@@ -5,10 +5,12 @@ import { format } from "date-fns";
 import React from "react";
 
 const Home = () => {
+    const filteredPosts = allPosts.filter((post) => !post.draft);
+
     return (
         <section className="group/section">
             <div className="group-hover/section:text-gray">
-                {allPosts
+                {filteredPosts
                     .sort((a, b) => b.date.localeCompare(a.date))
                     .map((post) => (
                         <Link

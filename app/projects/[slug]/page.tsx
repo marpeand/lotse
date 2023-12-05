@@ -35,7 +35,7 @@ export default function Post({ params }) {
 
     return (
         <section>
-            <h1 className="text-xl font-bold">{project.title}</h1>
+            <h1 className="text-2xl font-bold">{project.title}</h1>
             <article className="mt-10 prose prose-invert">
                 <MdxRenderer source={project.body.code} />
             </article>

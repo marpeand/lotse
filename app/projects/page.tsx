@@ -13,7 +13,7 @@ const Page = () => {
         <>
             {allProjects.map((project) => (
                 <Link className={"pb-4 flex"} href={project.url} key={project.slug}>
-                    <h1 className="overflow-hidden whitespace-nowrap overflow-ellipsis">{project.title}</h1>
+                    <h1 className="overflow-hidden whitespace-nowrap overflow-ellipsis hover:underline">{project.title}</h1>
                 </Link>
             ))}
         </>

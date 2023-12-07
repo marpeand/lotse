@@ -25,7 +25,7 @@ Demo: [lotse.vercel.app](https://lotse.vercel.app/)
 
 ## Quick start guide
 
-1. Fork the repo
+1. [Fork](https://github.com/marpeand/lotse/fork) this repo
 2. Modify the `blog.config.js` with your own site data
 
 ```bash
@@ -34,9 +34,13 @@ const CONFIG = {
     baseURL: "URL of your site",
     darkBackground: "#1a1a1a", // background color
 };
-
 module.exports = CONFIG;
 ```
+
+3. Replace the `app/favicon.ico` using your own icon
+4. Write your _about_ in `content/about.mdx`
+5. To deploy you can use [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
+   import the repo and deploy.
 
 ## Post & Project structure
 

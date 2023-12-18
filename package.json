@@ -3,7 +3,7 @@
     "author": "@marpeand",
     "description": "Minimalistic blogging template made using NextJS ",
     "homepage": "https://github.com/marpeand/lotse",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
     "license": "MIT",
     "scripts": {

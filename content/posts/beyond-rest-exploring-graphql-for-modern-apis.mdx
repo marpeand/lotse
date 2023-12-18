@@ -13,6 +13,33 @@ Interdum et malesuada fames ac ante ipsum primis in faucibus.
 In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi pharetra lectus imperdiet porttitor interdum. Sed porttitor, dui vitae accumsan condimentum, dolor risus semper magna, eget rutrum metus nibh vel augue. Donec in eleifend sapien. Fusce ante dolor, consectetur sed massa sit amet, dignissim malesuada massa. Suspendisse potenti. Cras ac lorem ut velit venenatis eleifend. Phasellus consequat massa leo, non suscipit lectus vestibulum eu. Nullam scelerisque massa sed neque blandit, id sagittis est sagittis. Fusce bibendum egestas erat id bibendum.
 Nullam felis dolor, maximus sed nunc nec, viverra maximus elit.
 
+```python
+import requests
+import json
+import os
+from flask import Flask
+
+query_todo = """query MyQuery {
+    todo(where: {id: "ckz8d4mlc0qjq0b13gcgbieni"}) {
+        description
+        completed
+    }
+}
+"""
+
+url = "https://api-<region>.hygraph.com/v2/<some hash>/master" # paste your Content API endpoint
+token = os.getenv("HYGRAPH_TOKEN")
+headers = {"Authorization": f"Bearer {token}"}
+app = Flask(__name__)
+
+@app.route("/get_todo")
+def get_todo():
+    payload = {"query": query_todo}
+    r = requests.post(url, json=payload, headers=headers)
+    json_data = r.json()
+    return {"todo text": json_data["data"]["todo"]["description"]}
+```
+
 ## dolor sit amet
 
 Suspendisse arcu mi, mattis in tincidunt at, lobortis et ligula.

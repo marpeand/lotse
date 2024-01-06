@@ -6,43 +6,47 @@ import { MdxRenderer } from "../components/Mdx";
 import { format } from "date-fns";
 import CONFIG from "@/blog.config";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
-    const post = allPosts.find((post) => post.slug === params.slug);
+export async function generateMetadata({
+  params,
+}): Promise<Metadata | undefined> {
+  const post = allPosts.find((post) => post.slug === params.slug);
 
-    if (!post) {
-        return;
-    }
+  if (!post) {
+    return;
+  }
 
-    const { title, date: publishedTime, slug: slug } = post;
+  const { title, date: publishedTime, slug } = post;
 
-    return {
-        title,
-        openGraph: {
-            title,
-            type: "article",
-            publishedTime,
-            url: `${CONFIG.baseURL}/${slug}`,
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-        },
-    };
+  return {
+    title,
+    openGraph: {
+      title,
+      type: "article",
+      publishedTime,
+      url: `${CONFIG.baseURL}/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+    },
+  };
 }
 export default function Post({ params }) {
-    const post = allPosts.find((post) => post.slug === params.slug);
+  const post = allPosts.find((post) => post.slug === params.slug);
 
-    if (!post) {
-        notFound();
-    }
+  if (!post) {
+    notFound();
+  }
 
-    return (
-        <section>
-            <h1 className="text-2xl font-bold mb-1">{post.title}</h1>
-            <span className="text-gray">{format(new Date(post.date), "dd/MM/yy")}</span>
-            <article className="mt-10 prose prose-invert">
-                <MdxRenderer source={post.body.code} />
-            </article>
-        </section>
-    );
+  return (
+    <section>
+      <h1 className="text-2xl font-bold mb-1">{post.title}</h1>
+      <span className="text-gray">
+        {format(new Date(post.date), "dd/MM/yy")}
+      </span>
+      <article className="mt-10 prose prose-invert">
+        <MdxRenderer source={post.body.code} />
+      </article>
+    </section>
+  );
 }

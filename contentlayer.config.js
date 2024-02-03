@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import readingTime from 'reading-time'
 
 export const Post = defineDocumentType(() => ({
     name: "Post",
@@ -28,6 +29,10 @@ export const Post = defineDocumentType(() => ({
                 return `/${slug}`;
             },
         },
+        readingTime: {
+            type: 'json',
+            resolve: (post) => readingTime(post.body.raw),
+        },
     },
 }));
 
@@ -51,15 +56,15 @@ export const Projects = defineDocumentType(() => ({
     computedFields: {
         slug: {
             type: "string",
-            resolve: (post) => {
-                const parts = post._raw.flattenedPath.split("/");
+            resolve: (project) => {
+                const parts = project._raw.flattenedPath.split("/");
                 return parts[parts.length - 1];
             },
         },
         url: {
             type: "string",
-            resolve: (post) => {
-                const parts = post._raw.flattenedPath.split("/");
+            resolve: (project) => {
+                const parts = project._raw.flattenedPath.split("/");
                 const slug = parts[parts.length - 1];
                 return `/projects/${slug}`;
             },

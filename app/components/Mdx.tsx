@@ -1,6 +1,5 @@
 "use client";
 
-import type { MDXComponents } from "mdx/types";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,7 +26,7 @@ function RoundedImage(props: any) {
     return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
-const components: MDXComponents = {
+const components = {
     Image: RoundedImage,
     a: CustomLink,
 };

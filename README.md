@@ -16,12 +16,12 @@ Demo: [lotse.vercel.app](https://lotse.vercel.app/)
 
 ### Enhanced Features
 
--   Employs Contentlayer for mdx compilation
--   Boasts an ultra-minimalistic design for a clean user experience
--   Developed with NextJS & TailwindCSS
--   Achieves nearly perfect scores in Page Speed Insights
--   Implements Katex for mathematical equation displays
--   Optimized for SEO, enhancing visibility and accessibility
+- Employs Contentlayer for mdx compilation
+- Boasts an ultra-minimalistic design for a clean user experience
+- Developed with NextJS & TailwindCSS
+- Achieves nearly perfect scores in Page Speed Insights
+- Implements Katex for mathematical equation displays
+- Optimized for SEO, enhancing visibility and accessibility
 
 ## Quick start guide
 
@@ -33,6 +33,8 @@ const CONFIG = {
     title: "Your site title",
     baseURL: "URL of your site",
     darkBackground: "#1a1a1a", // background color
+    resume: "/resume.pdf", // upload your resume in the /public folder
+    showResume: true, // true or false
 };
 module.exports = CONFIG;
 ```

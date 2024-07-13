@@ -8,7 +8,7 @@ import CONFIG from "@/blog.config";
 export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
-  const project = allProjects.find((post) => post.slug === params.slug);
+  const project = allProjects.find((project) => project.slug === params.slug);
 
   if (!project) {
     return;
@@ -29,8 +29,8 @@ export async function generateMetadata({
   };
 }
 
-export default function Post({ params }) {
-  const project = allProjects.find((post) => post.slug === params.slug);
+export default function Project({ params }) {
+  const project = allProjects.find((project) => project.slug === params.slug);
 
   if (!project) {
     notFound();

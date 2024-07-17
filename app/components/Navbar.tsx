@@ -7,31 +7,21 @@ import React from "react";
 import { resume, showResume } from "@/blog.config";
 
 const navItems = {
-  "/": {
-    name: "home",
-  },
-  "/projects": {
-    name: "projects",
-  },
-  "/about": {
-    name: "about",
-  },
-  "/resume.pdf": {
-    name: "resume",
-  },
+  "/": { name: "home" },
+  "/projects": { name: "projects" },
+  "/about": { name: "about" },
+  "/resume.pdf": { name: "resume" },
 };
 
-function NavItem({
-  path,
-  name,
-  pathname,
-}: {
-  path: string;
-  name: string;
-  pathname: string;
-}) {
+const NavItem = ({ path, name, pathname }) => {
+  const isResume = path === "/resume.pdf";
+  const Component = isResume ? "a" : Link;
+  const props = isResume
+    ? { href: path, target: "_blank", rel: "noopener noreferrer" }
+    : { href: path };
+
   return (
-    <Link key={path} href={path}>
+    <Component {...props} key={path}>
       <span
         className={cn(
           "text-[#8D8D8D] hover:text-white transition duration-[250ms] ease-out hover:duration-[50ms]",
@@ -40,9 +30,9 @@ function NavItem({
       >
         {name}
       </span>
-    </Link>
+    </Component>
   );
-}
+};
 
 export function Navbar() {
   const pathname = usePathname();

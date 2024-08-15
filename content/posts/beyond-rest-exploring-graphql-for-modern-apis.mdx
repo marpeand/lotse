@@ -13,31 +13,59 @@ Interdum et malesuada fames ac ante ipsum primis in faucibus.
 In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi pharetra lectus imperdiet porttitor interdum. Sed porttitor, dui vitae accumsan condimentum, dolor risus semper magna, eget rutrum metus nibh vel augue. Donec in eleifend sapien. Fusce ante dolor, consectetur sed massa sit amet, dignissim malesuada massa. Suspendisse potenti. Cras ac lorem ut velit venenatis eleifend. Phasellus consequat massa leo, non suscipit lectus vestibulum eu. Nullam scelerisque massa sed neque blandit, id sagittis est sagittis. Fusce bibendum egestas erat id bibendum.
 Nullam felis dolor, maximus sed nunc nec, viverra maximus elit.
 
-```python
-import requests
-import json
-import os
-from flask import Flask
+```javascript// app.js
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
 
-query_todo = """query MyQuery {
-    todo(where: {id: "ckz8d4mlc0qjq0b13gcgbieni"}) {
-        description
-        completed
-    }
-}
-"""
+const app = express();
+const PORT = 3000;
 
-url = "https://api-<region>.hygraph.com/v2/<some hash>/master" # paste your Content API endpoint
-token = os.getenv("HYGRAPH_TOKEN")
-headers = {"Authorization": f"Bearer {token}"}
-app = Flask(__name__)
+// Define a simple schema
+const schema = buildSchema(`
+  type Query {
+    hello: String
+    users: [User]
+  }
 
-@app.route("/get_todo")
-def get_todo():
-    payload = {"query": query_todo}
-    r = requests.post(url, json=payload, headers=headers)
-    json_data = r.json()
-    return {"todo text": json_data["data"]["todo"]["description"]}
+  type Mutation {
+    createUser(name: String!, age: Int!): User
+  }
+
+  type User {
+    id: ID!
+    name: String!
+    age: Int!
+  }
+`);
+
+// In-memory data storage
+let users = [];
+let idCounter = 1;
+
+// Define the root resolver
+const root = {
+  hello: () => 'Hello, world!',
+  users: () => users,
+  createUser: ({ name, age }) => {
+    const newUser = { id: idCounter++, name, age };
+    users.push(newUser);
+    return newUser;
+  },
+};
+
+// Setup GraphQL endpoint
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true, // Enables the GraphiQL UI
+}));
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`GraphQL API server running at http://localhost:${PORT}/graphql`);
+});
+
 ```
 
 ## dolor sit amet

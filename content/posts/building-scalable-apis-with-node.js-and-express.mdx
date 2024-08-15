@@ -13,6 +13,41 @@ Interdum et malesuada fames ac ante ipsum primis in faucibus.
 In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi pharetra lectus imperdiet porttitor interdum. Sed porttitor, dui vitae accumsan condimentum, dolor risus semper magna, eget rutrum metus nibh vel augue. Donec in eleifend sapien. Fusce ante dolor, consectetur sed massa sit amet, dignissim malesuada massa. Suspendisse potenti. Cras ac lorem ut velit venenatis eleifend. Phasellus consequat massa leo, non suscipit lectus vestibulum eu. Nullam scelerisque massa sed neque blandit, id sagittis est sagittis. Fusce bibendum egestas erat id bibendum.
 Nullam felis dolor, maximus sed nunc nec, viverra maximus elit.
 
+```javascript
+// app.js
+const express = require("express");
+const app = express();
+const PORT = 3000;
+
+// Middleware to parse JSON
+app.use(express.json());
+
+// Simple in-memory data storage
+let users = [];
+
+// Routes
+app.get("/", (req, res) => {
+  res.send("Welcome to the Simple API!");
+});
+
+// Get all users
+app.get("/users", (req, res) => {
+  res.json(users);
+});
+
+// Create a new user
+app.post("/users", (req, res) => {
+  const user = req.body;
+  users.push(user);
+  res.status(201).json(user);
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+```
+
 ## dolor sit amet
 
 Suspendisse arcu mi, mattis in tincidunt at, lobortis et ligula.

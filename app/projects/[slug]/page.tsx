@@ -38,6 +38,7 @@ export default function Project({ params }) {
 
   return (
     <section>
+      <span className="font-medium text-sm text-gray-600">Project</span>
       <h1 className="text-2xl font-bold">{project.title}</h1>
       <article className="mt-10 prose prose-invert">
         <MdxRenderer source={project.body.code} />

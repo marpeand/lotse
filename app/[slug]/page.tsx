@@ -51,7 +51,7 @@ export default function Post({ params }: { params: { slug: string } }) {
   return (
     <section>
       <h1 className="text-2xl font-bold mb-1">{post.title}</h1>
-      <div className="flex space-x-2 text-gray">
+      <div className="flex space-x-2 text-gray-500">
         <span>{format(new Date(post.date), "dd/MM/yy")}</span>
         <span className="font-bold">·</span>
         <span>{post.readingTime.text}</span>
@@ -59,14 +59,14 @@ export default function Post({ params }: { params: { slug: string } }) {
       <article className="my-10 prose prose-invert">
         <MdxRenderer source={post.body.code} />
       </article>
-      <div className="text-[#545454] tracking-wider">
+      <div className="text-gray-500 tracking-wider">
         <div className="space-x-1">
           <span className="font-light">&gt; </span>
           <span>share post on</span>
           <a
             href={href}
             target="_blank"
-            className="text-white/80 hover:underline hover:text-white/100"
+            className="text-gray-200 hover:underline hover:text-gray-50"
           >
             X(twitter)
           </a>
@@ -75,7 +75,7 @@ export default function Post({ params }: { params: { slug: string } }) {
           <span className="font-light">&gt; </span>
           <Link
             href="/"
-            className="text-white/80  hover:underline hover:text-white/100"
+            className="text-gray-200  hover:underline hover:text-gray-50"
           >
             cd ..
           </Link>

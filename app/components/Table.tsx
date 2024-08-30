@@ -7,7 +7,7 @@ const Table = ({ posts, year }: { posts: Post[]; year: string }) => {
     <div className="mt-10">
       <span className="font-bold">{year}</span>
       <div className="group/section">
-        <div className="group-hover/section:text-gray">
+        <div className="group-hover/section:text-gray-500">
           {posts.map((post: Post) => {
             let postDate = format(new Date(post.date), "dd/MM");
             return (

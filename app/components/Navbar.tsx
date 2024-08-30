@@ -24,7 +24,7 @@ const NavItem = ({ path, name, pathname }) => {
     <Component {...props} key={path}>
       <span
         className={cn(
-          "text-[#8D8D8D] hover:text-white transition duration-[250ms] ease-out hover:duration-[50ms]",
+          "text-gray-400 hover:text-white transition duration-[250ms] ease-out hover:duration-[50ms]",
           pathname === path ? "text-white" : ""
         )}
       >
@@ -51,7 +51,7 @@ export function Navbar() {
               pathname={pathname}
             />
             {index < paths.length - 1 && (
-              <span className="text-[#8D8D8D]">/</span>
+              <span className="text-gray-700">/</span>
             )}
           </React.Fragment>
         ))}

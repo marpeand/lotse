@@ -20,7 +20,7 @@ const Card = (props: CardProps) => {
       <h1 className="overflow-hidden whitespace-nowrap overflow-ellipsis">
         {title}
       </h1>
-      <span className="text-[#656565] group-hover:text-white transition duration-[100ms] ease-out hover:duration-[50ms] ml-3">
+      <span className="text-gray-500 group-hover:text-white transition duration-[100ms] ease-out hover:duration-[50ms] ml-3">
         {date}
       </span>
     </Link>

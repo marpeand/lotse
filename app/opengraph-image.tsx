@@ -63,7 +63,7 @@ export default async function Image() {
               padding: 0,
             }}
           >
-            {CONFIG.descripcion}
+            {CONFIG.description}
           </p>
           <div
             style={{

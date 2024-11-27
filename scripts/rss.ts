@@ -9,7 +9,7 @@ async function generateRssFeed() {
 
   const feedOptions = {
     title: CONFIG.title,
-    description: CONFIG.descripcion,
+    description: CONFIG.description,
     id: site_url,
     link: site_url,
     favicon: `${site_url}/favicon.ico`,

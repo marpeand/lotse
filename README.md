@@ -31,7 +31,7 @@ Demo: [lotse.vercel.app](https://lotse.vercel.app/)
 ```bash
 const CONFIG = {
     title: "Your site title",
-    descripcion: "Minimalistic dark mode blogging template",
+    description: "Minimalistic dark mode blogging template",
     baseURL: "URL of your site",
     darkBackground: "#1a1a1a", // background color
     resume: "/resume.pdf", // upload your resume in the /public folder

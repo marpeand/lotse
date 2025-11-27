@@ -1,4 +1,4 @@
-import CONFIG from "@/blog.config";
+import { CONFIG } from "@/blog.config";
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";

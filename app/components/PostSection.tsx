@@ -2,7 +2,7 @@ import type { Post } from "@/.contentlayer/generated";
 import { format } from "date-fns";
 import Card from "./Card";
 
-const Table = ({ posts, year }: { posts: Post[]; year: string }) => {
+const PostSection = ({ posts, year }: { posts: Post[]; year: string }) => {
   return (
     <div className="mt-10">
       <span className="font-bold">{year}</span>
@@ -25,4 +25,4 @@ const Table = ({ posts, year }: { posts: Post[]; year: string }) => {
   );
 };
 
-export default Table;
+export default PostSection;

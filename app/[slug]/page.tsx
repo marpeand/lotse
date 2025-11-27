@@ -1,14 +1,19 @@
 import { allPosts } from "@/.contentlayer/generated";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { MdxRenderer } from "../components/Mdx";
 import { format } from "date-fns";
-import CONFIG from "@/blog.config";
+import { baseURL } from "@/blog.config";
 import Link from "next/link";
 
-function getPostBySlug(slug: string) {
-  return allPosts.find((post) => post.slug === slug);
+function findPost(slug: string) {
+  return allPosts.find((p) => p.slug === slug);
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -16,37 +21,32 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = getPostBySlug(params.slug);
-
+  const post = findPost(params.slug);
   if (!post) return undefined;
 
-  const { title, date: publishedTime, slug } = post;
-
   return {
-    title,
+    title: post.title,
     openGraph: {
-      title,
+      title: post.title,
       type: "article",
-      publishedTime,
-      url: `${CONFIG.baseURL}/${slug}`,
+      publishedTime: post.date,
+      url: `${baseURL}/${post.slug}`,
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: post.title,
     },
   };
 }
 
-export default function Post({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default function PostPage({ params }: { params: { slug: string } }) {
+  const post = findPost(params.slug);
 
-  if (!post) {
-    return notFound();
-  }
+  if (!post) return notFound();
 
-  const href = `https://x.com/intent/tweet?text=${post.title}&url=${
-    CONFIG.baseURL + post.url
-  }`;
+  const href = `https://x.com/intent/tweet?text=${encodeURIComponent(
+    post.title
+  )}&url=${encodeURIComponent(baseURL + post.url)}`;
 
   return (
     <section>
@@ -56,9 +56,12 @@ export default function Post({ params }: { params: { slug: string } }) {
         <span className="font-bold">·</span>
         <span>{post.readingTime.text}</span>
       </div>
+
+      {/* Post Content */}
       <article className="my-10 prose prose-invert">
         <MdxRenderer source={post.body.code} />
       </article>
+
       <div className="text-gray-500 tracking-wider">
         <div className="space-x-1">
           <span className="font-light">&gt; </span>
@@ -75,7 +78,7 @@ export default function Post({ params }: { params: { slug: string } }) {
           <span className="font-light">&gt; </span>
           <Link
             href="/"
-            className="text-gray-200  hover:underline hover:text-gray-50"
+            className="text-gray-200 hover:underline hover:text-gray-50"
           >
             cd ..
           </Link>

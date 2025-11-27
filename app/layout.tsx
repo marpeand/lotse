@@ -1,9 +1,9 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from "./components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
-import "./globals.css";
-import CONFIG from "@/blog.config";
+import { CONFIG } from "@/blog.config";
 
 const inter = Inter({ subsets: ["latin"] });
 
